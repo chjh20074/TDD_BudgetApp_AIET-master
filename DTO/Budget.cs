@@ -8,13 +8,6 @@ namespace TDD_BudgetApp.DTO
 
         public decimal Amount { get; set; }
 
-        public DateTime FirstDay
-        {
-            get
-            {
-                var dateTime = DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
-                return dateTime;
-            }
-        }
+        public DateTime FirstDay => DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
     }
 }
