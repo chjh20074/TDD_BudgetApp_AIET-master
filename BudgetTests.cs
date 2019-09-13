@@ -70,6 +70,13 @@ namespace TDD_BudgetApp
             TotalAmountShouldBe(0, new DateTime(2019, 9, 30), new DateTime(2019, 9, 1));
         }
 
+        [Test]
+        public void Daily_Amount_is_10()
+        {
+            GivenBudgets(new Budget { YearMonth = "201909", Amount = 300 });
+            TotalAmountShouldBe(20, new DateTime(2019, 9, 1), new DateTime(2019, 9, 2));
+        }
+
         private void GivenBudgets(params Budget[] budgets)
         {
             _stubRepo.GetAll().Returns(budgets.ToList());
