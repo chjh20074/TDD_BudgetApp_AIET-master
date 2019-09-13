@@ -30,7 +30,7 @@ namespace TDD_BudgetApp
         [Test]
         public void period_inside_budget_month()
         {
-            GivenBudgets(new Budget { YearMonth = "201004", Amount = 30 });
+            GivenBudgets(new Budget { YearMonth = "201909", Amount = 30 });
 
             TotalAmountShouldBe(1, new DateTime(2019, 9, 1), new DateTime(2019, 9, 1));
         }

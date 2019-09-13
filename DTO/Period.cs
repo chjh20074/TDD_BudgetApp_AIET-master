@@ -20,7 +20,7 @@ namespace TDD_BudgetApp.DTO
 
         public decimal OverlappingDays(Budget budget)
         {
-            if (End < budget.FirstDay)
+            if (budget.LastDay < Start || End < budget.FirstDay)
             {
                 return 0;
             }
