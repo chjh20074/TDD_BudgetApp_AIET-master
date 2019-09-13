@@ -8,20 +8,25 @@ namespace TDD_BudgetApp.Service
 {
     public class Accounting
     {
-        private readonly IRepo<Budget> _repo;
-        public Accounting(IRepo<Budget> repo)
+        private readonly IRepo<Budget> _budgetRepo;
+        public Accounting(IRepo<Budget> budgetRepo)
         {
-            _repo = repo;
+            _budgetRepo = budgetRepo;
         }
 
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            if (_repo.GetAll().Any())
+            if (_budgetRepo.GetAll().Any())
             {
-                return (decimal) (end - start).TotalDays + 1;
+                return Days(start, end);
             }
-
+            
             return 0;
+        }
+
+        private static decimal Days(DateTime start, DateTime end)
+        {
+            return (decimal) (end - start).TotalDays + 1;
         }
     }
 }
