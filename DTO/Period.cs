@@ -15,6 +15,9 @@ namespace TDD_BudgetApp.DTO
 
         public decimal OverlappingDays(Period another)
         {
+            if (Start > End)
+                return 0;
+
             if (HasNoOverlapping(another))
             {
                 return 0;
