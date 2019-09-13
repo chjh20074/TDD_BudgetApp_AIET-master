@@ -2,12 +2,13 @@
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
+using TDD_BudgetApp.Service;
 
 namespace TDD_BudgetApp
 {
     public class BudgetTests
     {
-        private Accounting _account = new Accounting();
+        private readonly Accounting _account = new Accounting();
 
 
         [Test]
@@ -50,13 +51,5 @@ namespace TDD_BudgetApp
         //    TotalAmountShouldBe(20, new DateTime(2010, 4, 1), new DateTime(2010, 4, 2));
         //}
 
-    }
-
-    public class Accounting
-    {
-        public decimal TotalAmount(DateTime dateTime, DateTime dateTime1)
-        {
-            return 0;
-        }
     }
 }
