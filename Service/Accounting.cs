@@ -18,27 +18,10 @@ namespace TDD_BudgetApp.Service
         {
             if (_budgetRepo.GetAll().Any())
             {
-                return Days(new Period(start, end));
+                return new Period(start, end).Days();
             }
             
             return 0;
         }
-
-        private static decimal Days(Period period)
-        {
-            return (decimal) (period.End - period.Start).TotalDays + 1;
-        }
-    }
-
-    public class Period
-    {
-        public Period(DateTime start, DateTime end)
-        {
-            Start = start;
-            End = end;
-        }
-
-        public DateTime Start { get; private set; }
-        public DateTime End { get; private set; }
     }
 }
