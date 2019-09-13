@@ -16,16 +16,9 @@ namespace TDD_BudgetApp.Service
 
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            var allBudgets = _budgetRepo.GetAll();
             var period = new Period(start, end);
-            var totalAmount = 0m;
-            foreach (var budget in allBudgets)
-            {
-                totalAmount += budget.OverlappingDaysAmount(period);
 
-            }
-
-            return totalAmount;
+            return _budgetRepo.GetAll().Sum(s => s.OverlappingDaysAmount(period));
         }
     }
 }
