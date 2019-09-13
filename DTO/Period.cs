@@ -20,10 +20,10 @@ namespace TDD_BudgetApp.DTO
                 return 0;
             }
 
-            var effectiveStar = Start;
-            if (budget.FirstDay > Start)
-                effectiveStar = budget.FirstDay;
-            return (decimal)(End - effectiveStar).TotalDays + 1;
+            var effectiveStart = budget.FirstDay > Start
+                ? budget.FirstDay
+                : Start;
+            return (decimal)(End - effectiveStart).TotalDays + 1;
         }
     }
 }
