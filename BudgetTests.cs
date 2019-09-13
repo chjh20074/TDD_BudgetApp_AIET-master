@@ -12,6 +12,9 @@ namespace TDD_BudgetApp
         [Test]
         public void no_budgets()
         {
+            Accounting account = new Accounting();
+            var totalAmount = account.TotalAmount(new DateTime(2019, 9, 1), new DateTime(2019, 9, 30));
+            Assert.AreEqual(0, totalAmount);
         }
 
         //[Test]
@@ -43,5 +46,13 @@ namespace TDD_BudgetApp
         //    TotalAmountShouldBe(20, new DateTime(2010, 4, 1), new DateTime(2010, 4, 2));
         //}
 
+    }
+
+    public class Accounting
+    {
+        public decimal TotalAmount(DateTime dateTime, DateTime dateTime1)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
