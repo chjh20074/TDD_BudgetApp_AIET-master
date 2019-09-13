@@ -81,7 +81,7 @@ namespace TDD_BudgetApp
         public void multiple_budgets()
         {
             GivenBudgets(
-                new Budget { YearMonth = "201009", Amount = 300 },
+                new Budget { YearMonth = "201909", Amount = 300 },
                 new Budget { YearMonth = "201910", Amount = 31 });
             TotalAmountShouldBe(12, new DateTime(2019, 9, 30), new DateTime(2019, 10, 2));
         }
