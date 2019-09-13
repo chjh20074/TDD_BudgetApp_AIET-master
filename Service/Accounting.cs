@@ -21,7 +21,7 @@ namespace TDD_BudgetApp.Service
             {
                 var period = new Period(start, end);
                 var budget = allBudgets.First();
-                return period.OverlappingDays(budget);
+                return period.OverlappingDays(new Period(budget.FirstDay, budget.LastDay));
             }
             
             return 0;

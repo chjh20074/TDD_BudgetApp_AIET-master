@@ -13,19 +13,19 @@ namespace TDD_BudgetApp.DTO
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
 
-        public decimal OverlappingDays(Budget budget)
+        public decimal OverlappingDays(Period another)
         {
-            if (budget.LastDay < Start || End < budget.FirstDay)
+            if (another.End < Start || End < another.Start)
             {
                 return 0;
             }
 
-            var effectiveStart = budget.FirstDay > Start
-                ? budget.FirstDay
+            var effectiveStart = another.Start > Start
+                ? another.Start
                 : Start;
 
-            var effectiveEnd = budget.LastDay < End
-                ? budget.LastDay
+            var effectiveEnd = another.End < End
+                ? another.End
                 : End;
             return (decimal)(effectiveEnd - effectiveStart).TotalDays + 1;
         }
