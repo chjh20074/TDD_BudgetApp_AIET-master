@@ -7,14 +7,18 @@ namespace TDD_BudgetApp
 {
     public class BudgetTests
     {
+        private Accounting _account = new Accounting();
 
 
         [Test]
         public void no_budgets()
         {
-            Accounting account = new Accounting();
-            var totalAmount = account.TotalAmount(new DateTime(2019, 9, 1), new DateTime(2019, 9, 30));
-            Assert.AreEqual(0, totalAmount);
+            TotalAmountShouldBe(0, new DateTime(2019,9,1), new DateTime(2019,9,30) );
+        }
+
+        private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
+        {
+            Assert.AreEqual(expected, _account.TotalAmount(start, end));
         }
 
         //[Test]
