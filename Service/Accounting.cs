@@ -21,20 +21,10 @@ namespace TDD_BudgetApp.Service
             {
                 var period = new Period(start, end);
                 var budget = allBudgets.First();
-                return OverlappingDays(period, budget);
+                return period.OverlappingDays(budget);
             }
             
             return 0;
-        }
-
-        private static decimal OverlappingDays(Period period, Budget budget)
-        {
-            if (period.End < budget.FirstDay)
-            {
-                return 0;
-            }
-
-            return period.Days();
         }
     }
 }
