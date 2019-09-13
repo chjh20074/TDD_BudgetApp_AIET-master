@@ -18,7 +18,8 @@ namespace TDD_BudgetApp.Service
         {
             if (_budgetRepo.GetAll().Any())
             {
-                return new Period(start, end).Days();
+                var period = new Period(start, end);
+                return period.Days();
             }
             
             return 0;
