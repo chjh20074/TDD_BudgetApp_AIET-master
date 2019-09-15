@@ -25,9 +25,14 @@ namespace TDD_BudgetApp.Service
 
                 var dailyAmount = budget.Amount / budget.DaysInMonth;
 
-                return dailyAmount * period.OverlappingDays(new Period(budget.FirstDay, budget.LastDay));
+                return dailyAmount * period.OverlappingDays(CreatePeriod(budget));
             }
             return 0;
+        }
+
+        private static Period CreatePeriod(Budget budget)
+        {
+            return new Period(budget.FirstDay, budget.LastDay);
         }
     }
 }
