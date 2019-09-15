@@ -19,14 +19,14 @@ namespace TDD_BudgetApp.Service
         {
             if (_repos.GetAll().Any())
             {
-                return Days(start, end);
+                return Days(new Period(start, end));
             }
             return 0;
         }
 
-        private static decimal Days(DateTime start, DateTime end)
+        private static decimal Days(Period period)
         {
-            return (decimal) (end - start).TotalDays + 1;
+            return (decimal) (period.End - period.Start).TotalDays + 1;
         }
     }
 }
