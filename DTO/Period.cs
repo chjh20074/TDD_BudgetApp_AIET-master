@@ -23,7 +23,9 @@ namespace TDD_BudgetApp.DTO
 
             var effectiveStart = Start < budget.FirstDay ? budget.FirstDay : Start;
 
-            return (decimal)(End - effectiveStart).TotalDays + 1;
+            var effectiveEnd = budget.LastDay < End ? budget.LastDay : End;
+
+            return (decimal)(effectiveEnd - effectiveStart).TotalDays + 1;
         }
     }
 }
