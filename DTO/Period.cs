@@ -12,5 +12,10 @@ namespace TDD_BudgetApp.DTO
 
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
+
+        public decimal Days()
+        {
+            return (decimal) (End - Start).TotalDays + 1;
+        }
     }
 }
