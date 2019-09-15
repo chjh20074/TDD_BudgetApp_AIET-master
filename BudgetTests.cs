@@ -3,17 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
+using TDD_BudgetApp.Service;
 
 namespace TDD_BudgetApp
 {
     public class BudgetTests
     {
-        private readonly Accounting _accounting = new Accounting();
+        private Accounting _accounting;
+        private readonly IBudgetRepos<Budget> _budgetRepos = Substitute.For<IBudgetRepos<Budget>>();
+
+        [SetUp]
+        public void SetUp()
+        {
+            _accounting = new Accounting(_budgetRepos);
+        }
 
         [Test]
         public void no_budgets()
         {
+            _budgetRepos.GetAll().Returns(new List<Budget>());
             TotalAmountShouldBe(0, new DateTime(2019,9,1), new DateTime(2019, 9, 1));
+        }
+
+        [Test]
+        public void period_inside_budget_month()
+        {
+
+            _budgetRepos.GetAll().Returns(new List<Budget>
+            {
+                new Budget
+                {
+                    YearMonth = "201909",
+                    Amount = 30,
+                }
+            });
+
+            TotalAmountShouldBe(1, new DateTime(2019, 9, 1), new DateTime(2019, 9, 1));
         }
 
         private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
@@ -49,13 +74,5 @@ namespace TDD_BudgetApp
         //    TotalAmountShouldBe(20, new DateTime(2010, 4, 1), new DateTime(2010, 4, 2));
         //}
 
-    }
-
-    public class Accounting
-    {
-        public decimal TotalAmount(DateTime start, DateTime end)
-        {
-            return 0;
-        }
     }
 }
