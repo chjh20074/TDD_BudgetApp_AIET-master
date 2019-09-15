@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using TDD_BudgetApp.DTO;
+using TDD_BudgetApp.Repos;
 
 namespace TDD_BudgetApp.Service
 {
@@ -18,21 +19,14 @@ namespace TDD_BudgetApp.Service
         {
             if (_repos.GetAll().Any())
             {
-                return (decimal) (end - start).TotalDays + 1;
+                return Days(start, end);
             }
             return 0;
         }
-    }
 
-    public interface IBudgetRepos<T>
-    {
-        List<T> GetAll();
-    }
-
-    public class Budget
-    {
-        public string YearMonth { get; set; }
-
-        public decimal Amount { get; set; }
+        private static decimal Days(DateTime start, DateTime end)
+        {
+            return (decimal) (end - start).TotalDays + 1;
+        }
     }
 }

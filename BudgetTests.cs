@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
+using TDD_BudgetApp.DTO;
+using TDD_BudgetApp.Repos;
 using TDD_BudgetApp.Service;
 
 namespace TDD_BudgetApp
