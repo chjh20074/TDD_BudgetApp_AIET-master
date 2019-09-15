@@ -14,5 +14,15 @@ namespace TDD_BudgetApp.DTO
         public DateTime End { get; private set; }
 
         public decimal Days() => (decimal) (End - Start).TotalDays + 1;
+
+        public decimal OverlappingDays(Budget budget)
+        {
+            if (End < budget.FirstDay)
+            {
+                return 0;
+            }
+
+            return Days();
+        }
     }
 }
