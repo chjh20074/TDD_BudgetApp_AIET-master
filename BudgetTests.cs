@@ -63,6 +63,13 @@ namespace TDD_BudgetApp
             TotalAmountShouldBe(1, new DateTime(2019, 9, 30), new DateTime(2019, 10, 1));
         }
 
+        [Test]
+        public void invalid_period()
+        {
+            GivenBudgets(new Budget { YearMonth = "201909", Amount = 30 });
+            TotalAmountShouldBe(0, new DateTime(2019, 9, 30), new DateTime(2019, 9, 1));
+        }
+
         private void GivenBudgets(params Budget[] budgets)
         {
             _budgetRepos.GetAll().Returns(budgets.ToList());
