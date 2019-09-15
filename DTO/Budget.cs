@@ -18,5 +18,10 @@ namespace TDD_BudgetApp.DTO
         {
             return new Period(FirstDay, LastDay);
         }
+
+        public decimal DailyAmount()
+        {
+            return Amount / DaysInMonth;
+        }
     }
 }
