@@ -22,6 +22,12 @@ namespace TDD_BudgetApp.DTO
                 return 0;
             }
 
+            var lastDay = budget.LastDay;
+            if (Start > budget.LastDay)
+            {
+                return 0;
+            }
+
             return Days();
         }
     }
