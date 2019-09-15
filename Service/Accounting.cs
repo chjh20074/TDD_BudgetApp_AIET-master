@@ -20,12 +20,7 @@ namespace TDD_BudgetApp.Service
             var getAllBudgets = _budgetRepos.GetAll();
 
             var period = new Period(start, end);
-            var totalAmount = 0m;
-            foreach (var budget in getAllBudgets)
-            {
-                totalAmount += budget.OverlappingAmount(period);
-            }
-            return totalAmount;
+            return getAllBudgets.Sum(budget => budget.OverlappingAmount(period));
         }
     }
 }
