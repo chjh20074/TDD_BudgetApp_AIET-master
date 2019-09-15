@@ -53,7 +53,7 @@ namespace TDD_BudgetApp
     {
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }
