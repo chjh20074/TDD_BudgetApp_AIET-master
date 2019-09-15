@@ -23,5 +23,10 @@ namespace TDD_BudgetApp.DTO
         {
             return Amount / DaysInMonth;
         }
+
+        public decimal OverlappingAmount(Period period)
+        {
+            return DailyAmount() * period.OverlappingDays(CreatePeriod());
+        }
     }
 }
