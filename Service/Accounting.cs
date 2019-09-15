@@ -23,11 +23,14 @@ namespace TDD_BudgetApp.Service
                 var budget = getAllBudgets.First();
                 var period = new Period(start, end);
 
-                var dailyAmount = budget.DailyAmount();
-
-                return dailyAmount * period.OverlappingDays(budget.CreatePeriod());
+                return OverlappingAmount(budget, period);
             }
             return 0;
+        }
+
+        private static decimal OverlappingAmount(Budget budget, Period period)
+        {
+            return budget.DailyAmount() * period.OverlappingDays(budget.CreatePeriod());
         }
     }
 }
