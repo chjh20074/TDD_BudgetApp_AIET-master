@@ -35,6 +35,13 @@ namespace TDD_BudgetApp
             TotalAmountShouldBe(1, new DateTime(2019, 9, 1), new DateTime(2019, 9, 1));
         }
 
+        [Test]
+        public void period_no_overlapping_before_budget_firstDay()
+        {
+            GivenBudgets(new Budget { YearMonth = "201909", Amount = 30 });
+            TotalAmountShouldBe(0, new DateTime(2019, 8, 31), new DateTime(2019, 8, 31));
+        }
+
         private void GivenBudgets(params Budget[] budgets)
         {
             _budgetRepos.GetAll().Returns(budgets.ToList());
