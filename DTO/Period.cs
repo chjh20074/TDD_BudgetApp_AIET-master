@@ -15,11 +15,7 @@ namespace TDD_BudgetApp.DTO
 
         public decimal OverlappingDays(Period another)
         {
-            if (End < Start)
-            {
-                return 0;
-            }
-            if (HasNoOverlapping(another))
+            if (IsInvalid() || HasNoOverlapping(another))
             {
                 return 0;
             }
@@ -29,6 +25,11 @@ namespace TDD_BudgetApp.DTO
             var effectiveEnd = another.End < End ? another.End : End;
 
             return (decimal)(effectiveEnd - effectiveStart).TotalDays + 1;
+        }
+
+        private bool IsInvalid()
+        {
+            return End < Start;
         }
 
         private bool HasNoOverlapping(Period another)
