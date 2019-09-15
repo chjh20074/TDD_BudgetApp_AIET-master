@@ -21,13 +21,13 @@ namespace TDD_BudgetApp.Service
             if (getAllBudgets.Any())
             {
                 var budget = getAllBudgets.First();
-                var firstDay = DateTime.ParseExact(budget.YearMonth + "01", "yyyyMMdd", null);
+                var firstDay = budget.FirstDay();
                 if (end < firstDay)
                 {
                     return 0;
                 }
 
-                return new Period(start, end).Days();
+                return new Period(start, end).Days;
             }
             return 0;
         }
