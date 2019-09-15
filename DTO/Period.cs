@@ -21,15 +21,7 @@ namespace TDD_BudgetApp.DTO
                 return 0;
             }
 
-            DateTime effectiveStart;
-            if (Start < budget.FirstDay)
-            {
-                effectiveStart = budget.FirstDay;
-            }
-            else
-            {
-                effectiveStart = Start;
-            }
+            var effectiveStart = Start < budget.FirstDay ? budget.FirstDay : Start;
 
             return (decimal)(End - effectiveStart).TotalDays + 1;
         }
