@@ -8,15 +8,17 @@ namespace TDD_BudgetApp
 {
     public class BudgetTests
     {
+        private readonly Accounting _accounting = new Accounting();
 
         [Test]
         public void no_budgets()
         {
-            var accounting = new Accounting();
-            var start = new DateTime(2019,9,1);
-            var end = new DateTime(2019, 9, 1);
-            
-            Assert.AreEqual(0, accounting.TotalAmount(start, end));
+            TotalAmountShouldBe(0, new DateTime(2019,9,1), new DateTime(2019, 9, 1));
+        }
+
+        private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
+        {
+            Assert.AreEqual(expected, _accounting.TotalAmount(start, end));
         }
         //[Test]
         //public void period_inside_budget_month()
