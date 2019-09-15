@@ -18,14 +18,14 @@ namespace TDD_BudgetApp.Service
         public decimal TotalAmount(DateTime start, DateTime end)
         {
             var getAllBudgets = _budgetRepos.GetAll();
-            if (getAllBudgets.Any())
-            {
-                var budget = getAllBudgets.First();
-                var period = new Period(start, end);
 
-                return budget.OverlappingAmount(period);
+            var period = new Period(start, end);
+            var totalAmount = 0m;
+            foreach (var budget in getAllBudgets)
+            {
+                totalAmount += budget.OverlappingAmount(period);
             }
-            return 0;
+            return totalAmount;
         }
     }
 }
