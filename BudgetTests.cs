@@ -23,24 +23,21 @@ namespace TDD_BudgetApp
         [Test]
         public void no_budgets()
         {
-            _budgetRepos.GetAll().Returns(new List<Budget>());
+            GivenBudgets();
             TotalAmountShouldBe(0, new DateTime(2019,9,1), new DateTime(2019, 9, 1));
         }
 
         [Test]
         public void period_inside_budget_month()
         {
-
-            _budgetRepos.GetAll().Returns(new List<Budget>
-            {
-                new Budget
-                {
-                    YearMonth = "201909",
-                    Amount = 30,
-                }
-            });
+            GivenBudgets(new Budget { YearMonth = "201909", Amount = 30, });
 
             TotalAmountShouldBe(1, new DateTime(2019, 9, 1), new DateTime(2019, 9, 1));
+        }
+
+        private void GivenBudgets(params Budget[] budgets)
+        {
+            _budgetRepos.GetAll().Returns(budgets.ToList());
         }
 
         private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
