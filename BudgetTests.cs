@@ -13,7 +13,7 @@ namespace TDD_BudgetApp
     public class BudgetTests
     {
         private Accounting _account;
-        private IRepos<Budget> _repos = Substitute.For<IRepos<Budget>>();
+        private readonly IRepos<Budget> _repos = Substitute.For<IRepos<Budget>>();
 
         [SetUp]
         public void SetUp()
@@ -24,22 +24,25 @@ namespace TDD_BudgetApp
         [Test]
         public void no_budgets()
         {
-            _repos.GetAll().Returns(new List<Budget>());
-            var start = new DateTime(2019, 8, 31);
-            var end = new DateTime(2019, 8, 31);
-            Assert.AreEqual(0, _account.TotalAmount(start, end)); 
+            GivenBudgets();
+            TotalAmountShouldBe(0, new DateTime(2019, 8, 31), new DateTime(2019, 8, 31));
         }
 
         [Test]
         public void period_inside_budget_month()
         {
-            _repos.GetAll().Returns(new List<Budget>
-            {
-                new Budget {YearMonth = "2019/9", Amount = 30}
-            });
-            var start = new DateTime(2019, 9, 1);
-            var end = new DateTime(2019, 9, 1);
-            Assert.AreEqual(1, _account.TotalAmount(start, end));
+            GivenBudgets(new Budget {YearMonth = "2019/9", Amount = 30});
+            TotalAmountShouldBe(1, new DateTime(2019, 9, 1), new DateTime(2019, 9, 1));
+        }
+
+        private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
+        {
+            Assert.AreEqual(expected, _account.TotalAmount(start, end));
+        }
+
+        private void GivenBudgets(params Budget[] budgets)
+        {
+            _repos.GetAll().Returns(budgets.ToList());
         }
 
         //[Test]
