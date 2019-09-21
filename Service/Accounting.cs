@@ -24,7 +24,13 @@ namespace TDD_BudgetApp.Service
                 if (end < budget.FirstDay || budget.LastDay < start)
                     return 0;
 
-                return period.Days();
+                var effectiveStart = start;
+                if (start < budget.FirstDay)
+                {
+                    effectiveStart = budget.FirstDay;
+                }
+
+                return (end - effectiveStart).Days + 1;
             }
 
 
