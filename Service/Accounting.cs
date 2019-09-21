@@ -17,13 +17,14 @@ namespace TDD_BudgetApp.Service
         public decimal TotalAmount(DateTime start, DateTime end)
         {
             var budget = _repos.GetAll().FirstOrDefault();
+            var period = new Period(start, end);
 
             if (budget != null)
             {
                 if (end < budget.FirstDay || budget.LastDay < start)
                     return 0;
 
-                return new Period(start, end).Days();
+                return period.Days();
             }
 
 
