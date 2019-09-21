@@ -14,7 +14,7 @@ namespace TDD_BudgetApp.DTO
 
         public DateTime LastDay => new DateTime(FirstDay.Year, FirstDay.Month, DaysInMonth);
 
-        public Period CreateBudget()
+        public Period CreatePeriod()
         {
             return new Period(FirstDay, LastDay);
         }
@@ -22,6 +22,11 @@ namespace TDD_BudgetApp.DTO
         public decimal AmountInDay()
         {
             return Amount / DaysInMonth;
+        }
+
+        public decimal OverlappingAmount(Period period)
+        {
+            return AmountInDay() * period.OverlappingDays(CreatePeriod());
         }
     }
 }
