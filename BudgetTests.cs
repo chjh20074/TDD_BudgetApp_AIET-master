@@ -75,16 +75,17 @@ namespace TDD_BudgetApp
             Assert.AreEqual(expected, _account.TotalAmount(start, end));
         }
 
+        [Test]
+        public void invalid_period()
+        {
+            GivenBudgets(new Budget { YearMonth = "2019/9", Amount = 300 });
+            TotalAmountShouldBe(20, new DateTime(2019, 9, 31), new DateTime(2019, 9, 1));
+        }
+
         private void GivenBudgets(params Budget[] budgets)
         {
             _repos.GetAll().Returns(budgets.ToList());
         }
-
-        //[Test]
-        //public void invalid_period()
-        //{
-
-        //}
 
         //[Test]
         //public void multiple_budgets()
