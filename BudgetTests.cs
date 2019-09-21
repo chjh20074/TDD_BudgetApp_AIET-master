@@ -79,7 +79,7 @@ namespace TDD_BudgetApp
         public void invalid_period()
         {
             GivenBudgets(new Budget { YearMonth = "2019/9", Amount = 300 });
-            TotalAmountShouldBe(20, new DateTime(2019, 9, 31), new DateTime(2019, 9, 1));
+            TotalAmountShouldBe(0, new DateTime(2019, 9, 30), new DateTime(2019, 9, 1));
         }
 
         private void GivenBudgets(params Budget[] budgets)
