@@ -70,11 +70,6 @@ namespace TDD_BudgetApp
             TotalAmountShouldBe(20, new DateTime(2019, 8, 31), new DateTime(2019, 9, 2));
         }
 
-        private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
-        {
-            Assert.AreEqual(expected, _account.TotalAmount(start, end));
-        }
-
         [Test]
         public void invalid_period()
         {
@@ -82,15 +77,21 @@ namespace TDD_BudgetApp
             TotalAmountShouldBe(0, new DateTime(2019, 9, 30), new DateTime(2019, 9, 1));
         }
 
+        [Test]
+        public void multiple_budgets()
+        {
+            GivenBudgets(new Budget { YearMonth = "2019/9", Amount = 300 }, new Budget { YearMonth = "2019/10", Amount = 31 });
+            TotalAmountShouldBe(12, new DateTime(2019, 9, 30), new DateTime(2019, 10, 2));
+        }
+
+        private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
+        {
+            Assert.AreEqual(expected, _account.TotalAmount(start, end));
+        }
+
         private void GivenBudgets(params Budget[] budgets)
         {
             _repos.GetAll().Returns(budgets.ToList());
         }
-
-        //[Test]
-        //public void multiple_budgets()
-        //{
-
-        //}
     }
 }
