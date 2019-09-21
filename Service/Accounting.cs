@@ -20,7 +20,12 @@ namespace TDD_BudgetApp.Service
             if (budget != null)
             {
                 var firstDay = DateTime.Parse(budget.YearMonth + "/1");
+                var daysInMonth = DateTime.DaysInMonth(firstDay.Year, firstDay.Month);
+                var lastDay = new DateTime(firstDay.Year, firstDay.Month, daysInMonth);
+
                 if (end < firstDay)
+                    return 0;
+                if (lastDay < start)
                     return 0;
 
                 return (end - start).Days + 1;
