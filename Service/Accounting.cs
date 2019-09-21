@@ -19,7 +19,7 @@ namespace TDD_BudgetApp.Service
             var budgets = _repos.GetAll();
             if (budgets.Count > 0)
             {
-                return 0;
+                return (end - start).Days + 1;
             }
 
 
