@@ -16,9 +16,6 @@ namespace TDD_BudgetApp.Service
 
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            if (start > end)
-                return 0;
-
             var budget = _repos.GetAll().FirstOrDefault();
             var period = new Period(start, end);
 
