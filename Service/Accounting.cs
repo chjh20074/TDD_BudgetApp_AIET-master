@@ -21,31 +21,11 @@ namespace TDD_BudgetApp.Service
 
             if (budget != null)
             {
-                return OverlapingDays(period, budget);
+                return period.OverlapingDays(budget);
             }
 
 
             return 0;
-        }
-
-        private static decimal OverlapingDays(Period period, Budget budget)
-        {
-            if (period.End < budget.FirstDay || budget.LastDay < period.Start)
-                return 0;
-
-            var effectiveStart = period.Start;
-            if (effectiveStart < budget.FirstDay)
-            {
-                effectiveStart = budget.FirstDay;
-            }
-
-            var effectiveEnd = period.End;
-            if (budget.LastDay < effectiveEnd)
-            {
-                effectiveEnd = budget.LastDay;
-            }
-
-            return (effectiveEnd - effectiveStart).Days + 1;
         }
     }
 }

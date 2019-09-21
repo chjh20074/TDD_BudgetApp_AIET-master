@@ -12,5 +12,25 @@ namespace TDD_BudgetApp.DTO
 
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
+
+        public decimal OverlappingDays(Budget budget)
+        {
+            if (End < budget.FirstDay || budget.LastDay < Start)
+                return 0;
+
+            var effectiveStart = Start;
+            if (effectiveStart < budget.FirstDay)
+            {
+                effectiveStart = budget.FirstDay;
+            }
+
+            var effectiveEnd = End;
+            if (budget.LastDay < effectiveEnd)
+            {
+                effectiveEnd = budget.LastDay;
+            }
+
+            return (effectiveEnd - effectiveStart).Days + 1;
+        }
     }
 }
