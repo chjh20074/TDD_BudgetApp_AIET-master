@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using TDD_BudgetApp.DTO;
 using TDD_BudgetApp.Repos;
 
@@ -16,9 +16,13 @@ namespace TDD_BudgetApp.Service
 
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            var budgets = _repos.GetAll();
-            if (budgets.Count > 0)
+            var budget = _repos.GetAll().FirstOrDefault();
+            if (budget != null)
             {
+                var firstDay = DateTime.Parse(budget.YearMonth + "/1");
+                if (end < firstDay)
+                    return 0;
+
                 return (end - start).Days + 1;
             }
 
