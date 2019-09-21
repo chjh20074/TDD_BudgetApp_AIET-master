@@ -8,18 +8,18 @@ namespace TDD_BudgetApp.DTO
 
         public decimal Amount { get; set; }
 
-        public DateTime FirstDay => DateTime.Parse(YearMonth + "/1");
+        private DateTime FirstDay => DateTime.Parse(YearMonth + "/1");
 
-        public int DaysInMonth => DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
+        private int DaysInMonth => DateTime.DaysInMonth(FirstDay.Year, FirstDay.Month);
 
-        public DateTime LastDay => new DateTime(FirstDay.Year, FirstDay.Month, DaysInMonth);
+        private DateTime LastDay => new DateTime(FirstDay.Year, FirstDay.Month, DaysInMonth);
 
-        public Period CreatePeriod()
+        private Period CreatePeriod()
         {
             return new Period(FirstDay, LastDay);
         }
 
-        public decimal AmountInDay()
+        private decimal AmountInDay()
         {
             return Amount / DaysInMonth;
         }
