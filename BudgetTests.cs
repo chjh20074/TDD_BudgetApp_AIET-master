@@ -68,7 +68,7 @@ namespace TDD_BudgetApp
     {
         public decimal TotalAmount()
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }
