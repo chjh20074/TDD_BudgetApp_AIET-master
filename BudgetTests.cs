@@ -35,6 +35,13 @@ namespace TDD_BudgetApp
             TotalAmountShouldBe(1, new DateTime(2019, 9, 1), new DateTime(2019, 9, 1));
         }
 
+        [Test]
+        public void period_no_overlapping_before_budget_firstDay()
+        {
+            GivenBudgets(new Budget { YearMonth = "2019/9", Amount = 30 });
+            TotalAmountShouldBe(0, new DateTime(2019, 8, 31), new DateTime(2019, 8, 31));
+        }
+
         private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
         {
             Assert.AreEqual(expected, _account.TotalAmount(start, end));
@@ -47,12 +54,6 @@ namespace TDD_BudgetApp
 
         //[Test]
         //public void period_no_overlapping_after_budget_lastDay()
-        //{
-
-        //}
-
-        //[Test]
-        //public void period_no_overlapping_before_budget_firstDay()
         //{
 
         //}
