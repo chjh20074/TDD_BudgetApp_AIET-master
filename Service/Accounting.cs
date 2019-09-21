@@ -21,7 +21,7 @@ namespace TDD_BudgetApp.Service
 
             if (budget != null)
             {
-                return period.OverlapingDays(budget);
+                return period.OverlappingDays(budget);
             }
 
 
